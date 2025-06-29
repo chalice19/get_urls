@@ -24,13 +24,16 @@ def split_link(url):
     return link, '/'
 
 parser = argparse.ArgumentParser(description='Find links on the given pages')
-parser.add_argument('-u', '--url', action='append', help='I will happily eat a url link provided here')
+parser.add_argument('-u', '--url', action='append', help='I will happily eat a url link provided here', )
 parser.add_argument('-o', '--output', help='In which format do you want me to give you the result?',
                     choices=['stdout', 'json'], default='stdout')
 
 args = parser.parse_args()
-input_urls = args.url
 use_json = args.output == 'json'
+input_urls = args.url
+if not input_urls:
+    print('No url given -> no links found. Please use -u option to provide some url')
+    exit()
 
 output_urls = {}
 for url in input_urls:
@@ -38,7 +41,6 @@ for url in input_urls:
     soup = BeautifulSoup(response.text, 'html.parser')
     for a_tag in soup.find_all('a', href=only_links):
         link = a_tag.get('href')
-        assert link != None
 
         if absolute_link(link):
             if link.startswith('//'):
@@ -48,7 +50,6 @@ for url in input_urls:
             output_urls[base] = output_urls.get(base, []) + [relative]
         else:
             output_urls[url] = output_urls.get(url, []) + [link]
-            assert link.find('www') == -1
 
 if use_json:
     js = json.dumps(output_urls, indent=2)
