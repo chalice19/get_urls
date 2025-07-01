@@ -25,16 +25,13 @@ def split_link(url):
     return link, '/'
 
 parser = argparse.ArgumentParser(description='Find links on the given pages')
-parser.add_argument('-u', '--url', action='append', help='I will happily eat a url link provided here', )
+parser.add_argument('-u', '--url', action='append', help='I will happily eat a url link provided here', required=True)
 parser.add_argument('-o', '--output', help='In which format do you want me to give you the result?',
                     choices=['stdout', 'json'], default='stdout')
 
 args = parser.parse_args()
 use_json = args.output == 'json'
 input_urls = args.url
-if not input_urls:
-    print('No url given -> no links found. Please use -u option to provide some url')
-    exit()
 
 output_urls = {}
 for url in input_urls:
