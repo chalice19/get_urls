@@ -7,6 +7,7 @@ import requests
 from bs4 import BeautifulSoup
 from urllib.parse import urlparse
 
+
 def only_links(href):
     return href and not href.startswith(('mailto:', 'tel:', 'sms:', 'javascript:'))
 
@@ -41,7 +42,6 @@ for url in input_urls:
     soup = BeautifulSoup(response.text, 'html.parser')
     for a_tag in soup.find_all('a', href=only_links):
         link = a_tag.get('href')
-
         if absolute_link(link):
             if link.startswith('//'):
                 link = add_scheme(link, url)
