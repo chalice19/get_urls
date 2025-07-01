@@ -47,7 +47,7 @@ for url in input_urls:
             base, relative = split_link(link)
             output_urls[base] = output_urls.get(base, []) + [relative]
         else:
-            output_urls[url.rstrip('/')] = output_urls.get(url, []) + [link]
+            output_urls[url] = output_urls.get(url, []) + [link]
 
 if use_json:
     js = json.dumps(output_urls, indent=2)
