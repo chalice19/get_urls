@@ -27,6 +27,7 @@ def split_link(link):
         return link[:third_slash], link[third_slash:]
     return link.rstrip('/'), '/'
 
+# inspired by https://www.w3resource.com/python-exercises/asynchronous/python-asynchronous-exercise-4.php
 async def fetch_url(session, url):
     async with session.get(url) as response:
         return await response.text()
@@ -47,6 +48,7 @@ def collect_links(response, url):
             output_urls[url] = output_urls.get(url, []) + [link]
 
 # read given urls asynchronously
+# inspired by https://www.geeksforgeeks.org/python/asynchronous-http-requests-with-python/
 async def read_urls(urls): 
     async with aiohttp.ClientSession() as session:
         tasks = [fetch_url(session, url) for url in urls]
