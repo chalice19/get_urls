@@ -1,1 +1,7 @@
-Here are the implementations and answers of the Case Study. Each of 4 parts has it's branch with the explanations.
+### Computer science concepts:
+
+* programming languages (python)
+* asyncronous programming
+* network protocols (http, html)
+* distributes system concepts in kubernetes (scalability, fault tolerance, coordination, scheduling, load balancing, ...)
+* OS (Linux): command line tools, process isolation (docker)
