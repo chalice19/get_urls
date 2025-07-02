@@ -59,8 +59,8 @@ $ kubectl apply -f k8s_job.yaml
 
 Then we can find the pod that executed the job and find it's output in the logs [like shown here](https://kubernetes.io/docs/concepts/workloads/controllers/job/)
 
-### Points to improve:
+### improvements:
 
-* **args**: with the current implementation we cannot really pass the arguments with URLs. A better solution would be to set them in the ConfigMap object for pods to read the URL from it. I would state one URL argument per job and execute several seperate jobs for seeral input URLs
+* **args**: with the current implementation we cannot really pass the arguments with URLs. A better solution would be to set them in the ConfigMap object for pods to read the URL from it. I would state one URL argument per job and execute several seperate jobs for several input URLs
 * **image**: to be able to use the image we built, it needs to be uploaded to a registry
 * **results**: we might want to implement the automated collection of results since they will be spreaded among different logs
