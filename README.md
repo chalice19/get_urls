@@ -52,7 +52,7 @@ After I switched to the python:3.12-alpine (alpine 3.22.0), trivy check showed n
 
 ## kubernetes
 
-Our script is a one-off tasks that run to completion and then stop. This sounds like a perfect opportunity to use the Job of kubernetes to run our task and stop the pos one execution is finished. I decided this is a more suitable solution than adding an infinite sleep to the script. After launching the cluster, we can execute the job:
+Our script is a one-off tasks that run to completion and then stop. This sounds like a perfect opportunity to use the Job of kubernetes to run our task and stop the pod once execution is finished. I decided this is a more suitable solution than adding an infinite sleep to the script. After launching the cluster, we can execute the job:
 ``` bash
 $ kubectl apply -f k8s_job.yaml
 ```
