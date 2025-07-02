@@ -31,6 +31,8 @@ async def fetch_url(session, url):
     async with session.get(url) as response:
         return await response.text()
 
+# scan each page looking for viable links
+# stores links in a dictionary, base and relative paths separately
 def collect_links(response, url):    
     soup = BeautifulSoup(response, 'html.parser')
     for a_tag in soup.find_all('a', href=only_links):
@@ -44,6 +46,7 @@ def collect_links(response, url):
         else:
             output_urls[url] = output_urls.get(url, []) + [link]
 
+# read given urls asynchronously
 async def read_urls(urls): 
     async with aiohttp.ClientSession() as session:
         tasks = [fetch_url(session, url) for url in urls]
